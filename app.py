@@ -15,7 +15,8 @@ app.secret_key='super-secret-key'
 #)
 #mail = Mail(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://sql9330142:sInQaajpWF@sql9.freemysqlhosting.net/sql9330142'
+#replace below uri with prod uri
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost:3306/ccblog'
 db = SQLAlchemy(app)
 
 
