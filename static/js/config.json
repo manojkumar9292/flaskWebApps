@@ -1,0 +1,19 @@
+{
+
+    "params":
+    {
+       
+        "prod_uri":"mysql://sql9330142:sInQaajpWF@sql9.freemysqlhosting.net/sql9330142",
+        "fb_uri":"https://www.facebook.com/mahadev.phad.3",
+        "tw_uri":"https://twitter.com/ccblog",
+        "git_uri":"https://github.com/ccblog",
+        "heading_text":"Useful Blogs on CC/UC by experienced Engineers of Infosys",
+        "about_text":"Hi , My name is Manoj and I love Coding",
+        "login_image":"login.svg",
+        "blogname":"Technical Blogs",
+        "admin_user":"manoj",
+        "admin_password":"subscribenow"
+
+    }
+
+}

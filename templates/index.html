@@ -1,0 +1,70 @@
+
+{% extends "layout.html" %}
+{% block body %}
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/home-bg.jpg') }}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>{{cc.midhead_text}}</h1>
+            <span class="subheading">{{cc.heading_text}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+   
+  <div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      Click to Select Specific Category
+      </button>
+    <div class="dropdown-menu">
+
+      {% for cat in ts%}
+      
+      <a class="dropdown-item" value="{{cat}}" href="seg/{{cat}}" {% if selected=='default' %} selected 
+      {% endif%}> {{cat}}</a>
+
+      <hr>
+   {% endfor %}
+      </div>
+  </div>
+</div>
+<hr>
+  <!-- Main Content -->
+  
+  <div class="container" id="gh">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% for post in posts %}
+
+          <div class="post-preview">
+            <h5><u>Category:</u></h5>{{post.category}}
+            <a href="post/{{post.slug}}">
+               <h4><u>Problem Description:</u></h4>
+              <h3 class="post-subtitle">
+               {{post.tagline}}
+              </h3>
+              </a>
+              <p class="post-meta">Posted by
+              <a href="#">Admin</a>
+              on {{post.date}}</p>
+             
+              <h5><u>Solution:</u></h5>{{post.content[0:40]}}
+          </div>
+          <hr>
+                    
+        </li></a>
+          {% endfor %}
+        <!-- Pager -->
+
+      </div>
+    </div>
+  </div>
+      
+  {% endblock %}
+
