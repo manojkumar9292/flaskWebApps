@@ -4,25 +4,18 @@ from flask_mail import Mail
 import json
 from datetime import datetime
 
-
-with open('config.json','r') as c:
-    params = json.load(c)["params"]
-
-local_server = True
 app = Flask(__name__)
 app.secret_key='super-secret-key'
-app.config.update(
-    MAIL_SERVER='smtp.gmail.com',
-    MAIL_PORT='465',
-    MAIL_USE_SSL=True,
-    MAIL_USERNAME=params['gmail-user'],
-    MAIL_PASSWORD=params['gmail-password']
-)
-mail = Mail(app)
-if(local_server):
-    app.config['SQLALCHEMY_DATABASE_URI'] = params["local_uri"]
-else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = params["prod_uri"]
+#app.config.update(
+#    MAIL_SERVER='smtp.gmail.com',
+#    MAIL_PORT='465',
+#    MAIL_USE_SSL=True,
+#    MAIL_USERNAME=params['gmail-user'],
+#   MAIL_PASSWORD=params['gmail-password']
+#)
+#mail = Mail(app)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://sql9330142:sInQaajpWF@sql9.freemysqlhosting.net/sql9330142'
 db = SQLAlchemy(app)
 
 
@@ -128,11 +121,9 @@ def contact():
         entry = Contacts(name=name, phone_num = phone, msg = message, date= datetime.now(),email = email)
         db.session.add(entry)
         db.session.commit()
-        dg=0
-        if dg==10:
-            mail.send_message('New Message from blog'+ name,sender=email,recipients=[params['gmail-user']],
-                         body = message + "\n" + phone
-                         )
+        #mail.send_message('New Message from blog'+ name,sender=email,recipients=[params['gmail-user']],
+        #                 body = message + "\n" + phone
+        #                )
         
     return render_template('contact.html',cc=cc)
 
