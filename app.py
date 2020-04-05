@@ -168,25 +168,30 @@ def edit(sno):
 
 @app.route("/addpost/<string:sno>", methods = ['GET', 'POST'])
 def addpost(sno):
+    sn=Posts.query.filter_by().all()
+    tsno=[]
+    for snos in sn:
+        tsno.append(snos.sno)
+    maxsno=max(tsno)
+    nextsno=maxsno+1
     users=User.query.filter_by().all()
     tused=[]
     for used in users:
         tused.append(used.username)
     if('user' in session and session['user'] in tused):
         if request.method == 'POST':
-            snos = request.form.get('sno')
+            #snos = request.form.get('sno')
             tlines = request.form.get('tline')
             slugs = request.form.get('slug')
             contents = request.form.get('content')
             category = request.form.get('category')
             date=datetime.now()
             if sno=='0':
-                post = Posts(sno=snos,category=category,tagline=tlines,slug=slugs,content=contents,date=date,img_file=0)
+                post = Posts(sno=nextsno,category=category,tagline=tlines,slug=slugs,content=contents,date=date,img_file=0)
                 db.session.add(post)
                 db.session.commit()
                 return redirect('/addpost/'+ sno)
         return render_template('addpost.html',sno=sno,cc=cc)
-
 @app.route("/delete/<string:sno>", methods = ['GET', 'POST'])
 def delete(sno):
     users=User.query.filter_by().all()
